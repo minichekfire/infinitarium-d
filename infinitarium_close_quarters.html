@@ -1212,9 +1212,10 @@
                     <i class="fas fa-box"></i> Download Latest Version
                 </a>
                 <a href="https://github.com/minichekfire/infinitarium-d/releases/download/v2/Infinitarium.Close.Quarters.OLD.zip"
-                   target="_blank" class="download-link" style="background: linear-gradient(135deg, #800000, #ff4d4d); box-shadow: 0 6px 20px rgba(255, 77, 77, 0.5), 0 0 15px rgba(255, 77, 77, 0.7);">
+                    target="_blank" class="download-link"
+                    style="background: linear-gradient(135deg, #800000, #ff4d4d); box-shadow: 0 6px 20px rgba(255, 77, 77, 0.5), 0 0 15px rgba(255, 77, 77, 0.7);">
                     <i class="fas fa-flask"></i> Download Legacy Version
-                </a> 
+                </a>
             </div>
 
             <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
@@ -1247,7 +1248,8 @@
             </div>
             <div class="changelog-wrapper">
                 <div class="changelog-tabs">
-                    <button class="tab-btn active" data-tab="v2.4.2">v2.4.2 Beta (v14p2)</button>
+                    <button class="tab-btn active" data-tab="v2.5">v2.5 Beta PREVIEW (v15)</button>
+                    <button class="tab-btn" data-tab="v2.4.2">v2.4.2 Beta (v14p2)</button>
                     <button class="tab-btn" data-tab="v2.4.1">v2.4.1 Beta (v14p1)</button>
                     <button class="tab-btn" data-tab="v2.4">v2.4 Beta (TEST) (v14)</button>
                     <button class="tab-btn" data-tab="v2.3">v2.3 Beta (v13)</button>
@@ -1747,7 +1749,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div id="v2.4.2" class="tab-content active">
+                    <div id="v2.4.2" class="tab-content">
                         <div class="changelog-section">
                             <h3>Additions:</h3>
                             <ul class="changelog-list">
@@ -1760,137 +1762,149 @@
                                 <li>Small AI improvements</li>
                             </ul>
                         </div>
+                    </div>
+                    <div id="v2.5" class="tab-content active">
+                        <div class="changelog-section">
+                            <h3>Additions:</h3>
+                            <ul class="changelog-list">
+                                <li>Ledge grab</li>
+                            </ul>
+                            <h3>Improvements:</h3>
+                            <ul class="changelog-list">
+                                <li>Improved airdrops</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
+                <button class="close-modal" onclick="hideChangelog()">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-
-            <button class="close-modal" onclick="hideChangelog()">
-                <i class="fas fa-times"></i>
-            </button>
         </div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Changelog modal functionality
-            const modal = document.getElementById('changelog-modal');
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Changelog modal functionality
+                const modal = document.getElementById('changelog-modal');
 
-            window.showChangelog = function () {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
+                window.showChangelog = function () {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                };
 
-            window.hideChangelog = function () {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            };
+                window.hideChangelog = function () {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                };
 
-            // Close modal when clicking outside content
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    hideChangelog();
-                }
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    hideChangelog();
-                }
-            });
-
-            // Tab switching functionality
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-
-                    // Update active button
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    tabContents.forEach(content => {
-                        content.classList.remove('active');
-                        if (content.id === tabId) {
-                            content.classList.add('active');
-                        }
-                    });
-                });
-            });
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                // Close modal when clicking outside content
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        hideChangelog();
                     }
                 });
-            }, observerOptions);
 
-            document.querySelectorAll('.card, .download-section').forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(element);
-            });
+                // Close modal with Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && modal.classList.contains('active')) {
+                        hideChangelog();
+                    }
+                });
 
-            document.addEventListener('click', function (e) {
-                const ripple = document.createElement('div');
-                ripple.classList.add('ripple');
+                // Tab switching functionality
+                const tabButtons = document.querySelectorAll('.tab-btn');
+                const tabContents = document.querySelectorAll('.tab-content');
 
-                ripple.style.left = e.clientX + 'px';
-                ripple.style.top = e.clientY + 'px';
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.getAttribute('data-tab');
 
-                document.body.appendChild(ripple);
+                        // Update active button
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
 
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-            const galleryImages = document.querySelectorAll('.gallery-grid img');
-            const lightboxModal = document.getElementById('lightbox-modal');
-            const lightboxImage = document.getElementById('lightbox-image');
-            const closeLightbox = document.getElementById('close-lightbox');
+                        tabContents.forEach(content => {
+                            content.classList.remove('active');
+                            if (content.id === tabId) {
+                                content.classList.add('active');
+                            }
+                        });
+                    });
+                });
 
-            galleryImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    lightboxImage.src = img.src;
-                    lightboxModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.card, .download-section').forEach(element => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(element);
+                });
+
+                document.addEventListener('click', function (e) {
+                    const ripple = document.createElement('div');
+                    ripple.classList.add('ripple');
+
+                    ripple.style.left = e.clientX + 'px';
+                    ripple.style.top = e.clientY + 'px';
+
+                    document.body.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+                const galleryImages = document.querySelectorAll('.gallery-grid img');
+                const lightboxModal = document.getElementById('lightbox-modal');
+                const lightboxImage = document.getElementById('lightbox-image');
+                const closeLightbox = document.getElementById('close-lightbox');
+
+                galleryImages.forEach(img => {
+                    img.addEventListener('click', () => {
+                        lightboxImage.src = img.src;
+                        lightboxModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+
+                closeLightbox.addEventListener('click', () => {
+                    lightboxModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+
+                lightboxModal.addEventListener('click', (e) => {
+                    if (e.target === lightboxModal) {
+                        lightboxModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
+                        lightboxModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
                 });
             });
-
-            closeLightbox.addEventListener('click', () => {
-                lightboxModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            lightboxModal.addEventListener('click', (e) => {
-                if (e.target === lightboxModal) {
-                    lightboxModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightboxModal.classList.contains('active')) {
-                    lightboxModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-    </script>
-    <div id="lightbox-modal">
-        <img id="lightbox-image" src="" alt="Fullscreen preview">
-        <button id="close-lightbox">&times;</button>
-    </div>
+        </script>
+        <div id="lightbox-modal">
+            <img id="lightbox-image" src="" alt="Fullscreen preview">
+            <button id="close-lightbox">&times;</button>
+        </div>
 </body>
 
 </html>
