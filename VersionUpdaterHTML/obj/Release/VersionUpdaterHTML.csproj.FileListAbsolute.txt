@@ -1,0 +1,14 @@
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\bin\Release\VersionUpdaterHTML.exe.config
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\bin\Release\VersionUpdaterHTML.exe
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\bin\Release\VersionUpdaterHTML.pdb
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.csproj.AssemblyReference.cache
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\MainWindow.baml
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\MainWindow.g.cs
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\App.g.cs
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML_MarkupCompile.cache
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.g.resources
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.Properties.Resources.resources
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.csproj.GenerateResource.cache
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.csproj.CoreCompileInputs.cache
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.exe
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.pdb
