@@ -1,3 +1,3 @@
 # infinitarium.github.io
 
-for html link
+for html link ts is vaibkod 😂😂😂😂😂
