@@ -366,5 +366,114 @@ namespace InfinitariumManager
                 MessageBox.Show($"Ошибка сохранения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void BtnExportSingleTxt_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(LstVersions.SelectedItem is VersionItem selectedVersion))
+            {
+                MessageBox.Show("Сначала выберите версию для экспорта.", "Подсказка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            var dialog = new SaveFileDialog
+            {
+                Filter = "Text Files|*.txt",
+                Title = "Сохранить Changelog версии",
+                FileName = $"{selectedVersion.Id}_changelog.txt"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                try
+                {
+                    string content = GenerateVersionTxt(selectedVersion);
+                    File.WriteAllText(dialog.FileName, content);
+                    LblStatus.Text = $"Версия {selectedVersion.Id} сохранена в TXT.";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка сохранения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private void BtnExportAllTxt_Click(object sender, RoutedEventArgs e)
+        {
+            if (_versions.Count == 0)
+            {
+                MessageBox.Show("Нет версий для экспорта.", "Подсказка", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            var dialog = new SaveFileDialog
+            {
+                Filter = "Text Files|*.txt",
+                Title = "Сохранить полный Changelog",
+                FileName = "Infinitarium_Full_Changelog.txt"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                try
+                {
+                    string content = GenerateFullChangelogTxt();
+                    File.WriteAllText(dialog.FileName, content);
+                    LblStatus.Text = "Полный Changelog сохранен в TXT.";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка сохранения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private string GenerateVersionTxt(VersionItem version)
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine($"Version: {version.Id}");
+            sb.AppendLine($"Label: {version.Label}");
+            sb.AppendLine($"Status: {(version.IsUnreleased ? "UNRELEASED" : "Released")}");
+            sb.AppendLine(new string('-', 50));
+            sb.AppendLine();
+
+            foreach (var section in version.Sections)
+            {
+                string title = section.Type == "Custom" ? section.CustomTitle : section.Type;
+                if (!string.IsNullOrWhiteSpace(title))
+                {
+                    sb.AppendLine($"[{title}]");
+
+                    if (!string.IsNullOrWhiteSpace(section.ItemsText))
+                    {
+                        var lines = section.ItemsText.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var line in lines)
+                        {
+                            sb.AppendLine($"- {line.Trim()}");
+                        }
+                    }
+                    sb.AppendLine();
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        private string GenerateFullChangelogTxt()
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("I:CQ FULL CHANGELOG");
+            sb.AppendLine($"Generated {DateTime.Now:yyyy-MM-dd HH:mm}");
+            sb.AppendLine(new string('=', 60));
+            sb.AppendLine();
+
+            foreach (var version in _versions)
+            {
+                sb.Append(GenerateVersionTxt(version));
+                sb.AppendLine(new string('.', 50));
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
     }
 }

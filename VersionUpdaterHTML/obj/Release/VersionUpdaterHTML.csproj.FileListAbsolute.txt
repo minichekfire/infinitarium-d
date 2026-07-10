@@ -12,3 +12,4 @@ F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUp
 F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.csproj.CoreCompileInputs.cache
 F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.exe
 F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.pdb
+F:\Projects\HTML\infinitarium.github.io\VersionUpdaterHTML\obj\Release\VersionUpdaterHTML.exe.config

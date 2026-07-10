@@ -156,6 +156,14 @@
                                 Background="#222" Foreground="#4d7cff" Padding="15,8" Margin="0,0,10,0" BorderBrush="#4d7cff" BorderThickness="1"/>
                         <Button Content="Удалить" Click="BtnDeleteVersion_Click" 
                                 Background="#333" Foreground="#ff4d4d" Padding="15,8" BorderThickness="0"/>
+
+                        <Separator Width="1" Background="#333" Margin="10,0"/>
+
+                        <Button Content="Экспорт версии (.txt)" Click="BtnExportSingleTxt_Click" 
+                            Background="#1a1a20" Foreground="#aaa" Padding="10,8" Margin="0,0,5,0" BorderBrush="#444" BorderThickness="1" ToolTip="Сохранить changelog текущей выбранной версии в TXT"/>
+
+                        <Button Content="Экспорт всего (.txt)" Click="BtnExportAllTxt_Click" 
+                            Background="#1a1a20" Foreground="#aaa" Padding="10,8" BorderBrush="#444" BorderThickness="1" ToolTip="Сохранить полный список изменений всех версий в один TXT файл"/>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
